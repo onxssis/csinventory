@@ -5,8 +5,9 @@
                selectedCustomer: 0,
                selectedProduct: 0,
                orderStatus: 0,
-               orderQuantity: '',
+               orderQuantity: 1,
                feedback: '',
+//               totalPrice: ,
                customer: {
                    name: '',
                    email: '',
@@ -24,10 +25,14 @@
         },
         computed: {
             priceInNaira() {
-                return '&#8358;' + this.product.price.toLocaleString();
-            }
+                return '&#8358;' + this.totalPrice().toLocaleString();
+            },
+
         },
         methods: {
+            totalPrice() {
+                return this.product.price * this.orderQuantity;
+            },
            getCustomerData() {
                if (this.selectedCustomer === 0) return;
                axios.get('/api/orders/customers', {
@@ -63,7 +68,7 @@
                     product: this.selectedProduct,
                     customer: this.selectedCustomer,
                     quantity: this.orderQuantity,
-                    amount: this.product.price,
+                    amount: this.totalPrice(),
                     status: this.orderStatus,
                 })
                 .then(res => {
