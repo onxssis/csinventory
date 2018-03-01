@@ -18,6 +18,8 @@ class UserTableSeeder extends Seeder
         $admin->email = 'admin@email.com';
         $admin->password = bcrypt('password');
 
+        $admin->save();
+
         $admin->roles()->attach(3);
 
     }
