@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            <div class="well">
+                <span>email: <b>admin@email.com</b></span>
+                <br>
+                <span>password: <b>password</b></span>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
 
