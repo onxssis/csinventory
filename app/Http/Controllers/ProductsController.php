@@ -120,10 +120,6 @@ class ProductsController extends Controller
 
     protected function getSuppliers()
     {
-<<<<<<< HEAD
         return Supplier::all('id', 'name');
-=======
-        Supplier::all('id', 'name');
->>>>>>> 1c26fe22a1723a967743607dc3e8540a34adffb0
     }
 }
