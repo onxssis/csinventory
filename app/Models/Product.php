@@ -23,6 +23,11 @@ class Product extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function addNew()
+    {
+        # code...
+    }
+
     public function getCostPriceAttribute($value)
     {
         return $value / 100;

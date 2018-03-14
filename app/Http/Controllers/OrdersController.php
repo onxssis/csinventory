@@ -24,26 +24,6 @@ class OrdersController extends Controller
         return view('orders.create', compact('order', 'customers', 'products'));
     }
 
-    public function show(Order $order)
-    {
-
-    }
-
-    public function store()
-    {
-
-    }
-
-    public function edit(Order $order)
-    {
-
-    }
-
-    public function update(Order $order)
-    {
-
-    }
-
     public function destroy(Order $order)
     {
         $order->delete();

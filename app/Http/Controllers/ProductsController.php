@@ -31,8 +31,8 @@ class ProductsController extends Controller
      */
     public function create(Product $product)
     {
-        $warehouses = Warehouse::all('id', 'name');
-        $suppliers = Supplier::all('id', 'name');
+        $warehouses = $this->getWarehouses();
+        $suppliers = $this->getSuppliers();
 
         return view('products.create', compact('product', 'warehouses', 'suppliers'));
     }
@@ -63,17 +63,6 @@ class ProductsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param Product $product
@@ -81,10 +70,8 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        // TODO: Refactor, duplication here
-
-        $warehouses = Warehouse::all('id', 'name');
-        $suppliers = Supplier::all('id', 'name');
+        $warehouses = $this->getWarehouses();
+        $suppliers = $this->getSuppliers();
 
         return view('products.edit', compact('product', 'warehouses', 'suppliers'));
     }
@@ -98,8 +85,6 @@ class ProductsController extends Controller
      */
     public function update(ProductsRequest $request, Product $product)
     {
-//        dd($request->description);
-
         $product->update([
             'name' => $request->name,
             'code' => $request->code,
@@ -126,5 +111,15 @@ class ProductsController extends Controller
         $product->delete();
 
         return redirect()->route('products.index');
+    }
+
+    protected function getWarehouses()
+    {
+        return Warehouse::all('id', 'name');
+    }
+
+    protected function getSuppliers()
+    {
+        return Supplier::all('id', 'name');
     }
 }
