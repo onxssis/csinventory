@@ -30,7 +30,7 @@ class UsersController extends Controller
     public function create(User $user)
     {
         if (Gate::denies('create-user')) {
-          return redirect()->home()->with(['error' => 'You\'re not authorized to perform that action.']);
+            return redirect()->home()->with(['error' => 'You\'re not authorized to perform that action.']);
         }
 
         $roles = Role::all('name', 'id', 'display_name');
@@ -48,6 +48,7 @@ class UsersController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users',
             'role' => 'required'
         ]);
 
@@ -56,6 +57,10 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => bcrypt('secretpassword')
         ]);
+        
+        if ($request->role === 3) {
+            $user->assignRole(2);
+        }
 
         $user->assignRole($request->role);
 
@@ -101,11 +106,13 @@ class UsersController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
         ]);
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'username' => $request->username,
         ]);
 
         $user->roles()->sync($request->role);

@@ -20,6 +20,18 @@
             </span>
         @endif
 
+	</div>
+	
+	<div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+        <label for="username" class="control-label">Username</label>
+        <input type="text" name="username" class="form-control" value="{{ old('username') ?? $user->username }}">
+
+        @if ($errors->has('username'))
+            <span class="help-block">
+                <strong>{{ $errors->first('username') }}</strong>
+            </span>
+        @endif
+
     </div>
 
     <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">

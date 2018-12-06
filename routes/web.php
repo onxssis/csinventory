@@ -22,12 +22,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('warehouses', 'WarehousesController');
-    Route::resource('suppliers', 'SuppliersController');
-    Route::resource('users', 'UsersController');
-    Route::resource('products', 'ProductsController');
+    Route::resource('warehouses', 'WarehousesController')->middleware('superadmin');
+    Route::resource('suppliers', 'SuppliersController')->middleware('superadmin');
+    Route::resource('users', 'UsersController')->middleware('superadmin', 'admin');
+    Route::resource('products', 'ProductsController')->middleware('superadmin', 'admin');
     Route::resource('orders', 'OrdersController');
-    Route::resource('customers', 'CustomersController');
+    Route::resource('customers', 'CustomersController')->middleware('superadmin', 'admin');
 
     Route::get('/api/orders/customers', 'Api\OrdersController@getCustomerData');
     Route::get('/api/orders/products', 'Api\OrdersController@getProductData');

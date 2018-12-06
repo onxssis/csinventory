@@ -66,7 +66,28 @@
                         </ul>
                     </li>
 
-                    <li class="dropdown">
+                    
+                   
+				@endsuperadmin
+
+				@admin
+
+					<li class="dropdown">
+						<a href="#"
+						class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+							Products <span class="caret"></span>
+						</a>
+
+						<ul class="dropdown-menu">
+							<li>
+								<a href="{{ route('products.create') }}">Add</a>
+								<a href="{{ route('products.index') }}">View all</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                             Customers <span class="caret"></span>
                         </a>
@@ -81,36 +102,22 @@
                         </ul>
                     </li>
 
-                    <li class="dropdown">
-                        <a href="#"
-                           class="dropdown-toggle"
-                           data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                            Products <span class="caret"></span>
-                        </a>
+				@endadmin
+				
+				<li class="dropdown">
+					<a href="#"
+					   class="dropdown-toggle"
+					   data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+						Orders <span class="caret"></span>
+					</a>
 
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ route('products.create') }}">Add</a>
-                                <a href="{{ route('products.index') }}">View all</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#"
-                           class="dropdown-toggle"
-                           data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                            Orders <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ route('orders.create') }}">Add</a>
-                                <a href="{{ route('orders.index') }}">View all</a>
-                            </li>
-                        </ul>
-                    </li>
-                @endsuperadmin
+					<ul class="dropdown-menu">
+						<li>
+							<a href="{{ route('orders.create') }}">Add</a>
+							<a href="{{ route('orders.index') }}">View all</a>
+						</li>
+					</ul>
+				</li>
 
             </ul>
 
@@ -119,7 +126,7 @@
                 <!-- Authentication Links -->
                 @guest
                 <li><a href="{{ route('login') }}">Login</a></li>
-                <li><a href="{{ route('register') }}">Register</a></li>
+                {{-- <li><a href="{{ route('register') }}">Register</a></li> --}}
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
